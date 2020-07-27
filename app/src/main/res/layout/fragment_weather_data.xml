@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/datetime_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7 July, 7:30pm"
+        android:textSize="24sp"
+        />
+
+    <TextView
+        android:id="@+id/temp_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/datetime_label"
+        android:layout_marginTop="8dp"
+        android:text="29"
+        android:textSize="80sp"
+        />
+
+    <TextView
+        android:id="@+id/temp_unit_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/temp_label"
+        android:layout_below="@id/datetime_label"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/degree_celsius_symbol"
+        android:textSize="32sp"
+        />
+
+    <TextView
+        android:id="@+id/feelslike_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/temp_label"
+        android:layout_marginTop="8dp"
+        android:text="Feels like 32\u2103"
+        android:textSize="16sp"
+        />
+
+</RelativeLayout>

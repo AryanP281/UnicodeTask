@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context=".HomeActivity"
+    >
+
+    <TextView
+        android:id="@+id/user_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/user_name_label_text"
+        android:textSize="25sp"
+        />
+
+    <EditText
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_name_label"
+        android:layout_marginTop="15dp"
+        android:hint="@string/user_name_label_text"
+        android:textSize="16sp"
+        />
+
+    <TextView
+        android:id="@+id/birth_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_name"
+        android:layout_marginTop="25dp"
+        android:text="@string/user_birthdate_label_text"
+        android:textSize="25sp"
+        />
+
+    <DatePicker
+        android:id="@+id/birth_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/birth_date_label"
+        android:layout_marginTop="15dp"
+        android:datePickerMode="calendar"
+         />
+
+    <TextView
+        android:id="@+id/phonenum_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/birth_date"
+        android:layout_marginTop="25dp"
+        android:text="@string/user_phonenum_label_text"
+        android:textSize="25sp"
+        />
+
+    <EditText
+        android:id="@+id/phonenum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phonenum_label"
+        android:layout_marginTop="15dp"
+        android:hint="@string/user_phonenum_label_text"
+        android:inputType="phone"
+        />
+
+    </RelativeLayout>
+</ScrollView>

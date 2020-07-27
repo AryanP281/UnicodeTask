@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Unicode Tasks</string>
+    <string name="nav_userinfo_title">User Info</string>
+    <string name="nav_contacts_title">Contact List</string>
+    <string name="nav_weather_title">Weather</string>
+    <string name="open_nav_drawer">Open Navigation Drawer</string>
+    <string name="close_nav_drawer">Close Navigation Drawer</string>
+    <string name="frag_userinfo_title">User Info</string>
+    <string name="user_name_label_text">Enter Name : </string>
+    <string name="user_birthdate_label_text">Enter Birthdate</string>
+    <string name="user_phonenum_label_text">Enter Phone number: </string>
+    <string name="save_userinfo">Save</string>
+    <string name="clear_userinfo">Clear</string>
+    <string name="nav_header_username_label">Guest User</string>
+    <string name="nav_header_userphone_label">No Phone no.</string>
+    <string name="nav_header_userbirth_label">No Birthdate</string>
+    <string name="frag_contactlist_title">Contacts List</string>
+    <string name="permission_rationale_title">Permission Required</string>
+    <string name="contacts_permission_rationale_msg">In order to display contact list, app requires permission to read contacts</string>
+    <string name="permission_rationale_accept_btn">Accept</string>
+    <string name="frag_weatherinfo_title">Weather Data</string>
+    <string name="city_name_hint">Enter City - eg Mumbai</string>
+    <string name="search_city_weather_btn_label">Search</string>
+    <string name="internet_permission_rationale_msg">App requires internet access for getting weather data</string>
+   <string name="degree_celsius_symbol">\u2103</string>
+</resources>
