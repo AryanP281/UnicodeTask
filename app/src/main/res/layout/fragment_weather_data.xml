@@ -1,48 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
-
-    <TextView
-        android:id="@+id/datetime_label"
-        android:layout_width="wrap_content"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="7 July, 7:30pm"
-        android:textSize="24sp"
-        />
+        android:padding="16dp"
+        android:background="@color/colorAccent">
 
-    <TextView
-        android:id="@+id/temp_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/datetime_label"
-        android:layout_marginTop="8dp"
-        android:text="29"
-        android:textSize="80sp"
-        />
+        <TextView
+            android:id="@+id/datetime_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7 July, 7:30pm"
+            android:textSize="24sp"
+            />
 
-    <TextView
-        android:id="@+id/temp_unit_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/temp_label"
-        android:layout_below="@id/datetime_label"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/degree_celsius_symbol"
-        android:textSize="32sp"
-        />
+        <TextView
+            android:id="@+id/temp_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/datetime_label"
+            android:layout_marginTop="8dp"
+            android:text="29"
+            android:textSize="80sp"
+            />
 
-    <TextView
-        android:id="@+id/feelslike_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/temp_label"
-        android:layout_marginTop="8dp"
-        android:text="Feels like 32\u2103"
-        android:textSize="16sp"
-        />
+        <TextView
+            android:id="@+id/temp_unit_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/temp_label"
+            android:layout_below="@id/datetime_label"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/degree_celsius_symbol"
+            android:textSize="32sp"
+            />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/feelslike_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/temp_label"
+            android:layout_marginTop="8dp"
+            android:text="Feels like 32\u2103"
+            android:textSize="16sp"
+            />
+
+        <LinearLayout
+            android:id="@+id/weather_conditions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/temp_label"
+            android:orientation="vertical">
+
+        <ImageView
+            android:id='@+id/weather_icon'
+            android:layout_width="104dp"
+            android:layout_height="104dp"
+            />
+
+        <TextView
+            android:id='@+id/weather_cond_label'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Haze"
+            android:textSize="24sp"
+            />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/extra_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/feelslike_label"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/min_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="min temp: "
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/max_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Max Temp: "
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/pressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Pressure:"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Humidity:"
+                android:textSize="16sp"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
