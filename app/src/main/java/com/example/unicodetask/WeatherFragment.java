@@ -47,8 +47,11 @@ public class WeatherFragment extends Fragment
                 //Getting the city name
                 String city = ((TextView) getView().findViewById(R.id.city_name)).getText().toString();
 
+                String requestUrl = String.format("https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s", city,
+                        "74bbe85a0553d698bff821e7f1f5c4bd"); //The api request url
+
                 //Getting the weather for the city
-                (new RetriveWeatherData(WeatherFragment.this)).execute(city);
+                (new RetriveWeatherData(WeatherFragment.this)).execute(requestUrl);
             }
             else
             {
@@ -218,6 +221,10 @@ public class WeatherFragment extends Fragment
 
         locationRetreiver.stopListener(); //Stops listening for location updates as location has been received
 
-        Toast.makeText(getActivity(), String.format("Lat: %f, Long: %f", userLocation.getLatitude(), userLocation.getLongitude()), Toast.LENGTH_LONG).show();
+        String requestUrl = String.format("https://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&appid=%s",
+                userLocation.getLatitude(), userLocation.getLongitude(), "74bbe85a0553d698bff821e7f1f5c4bd"); //The api request
+
+        //Getting the weather for the city
+        (new RetriveWeatherData(WeatherFragment.this)).execute(requestUrl);
     }
 }

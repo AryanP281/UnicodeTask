@@ -5,9 +5,8 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:columnCount="3"
-    android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:showIn=""
+    android:background="@drawable/navigation_header_background"
     >
 
     <ImageView

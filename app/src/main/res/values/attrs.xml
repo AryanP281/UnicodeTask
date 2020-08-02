@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="toolbarGradientStart" format="color"/>
+    <attr name="toolbarGradientCentre" format="color"/>
+    <attr name="toolbarGradientEnd" format="color"/>
+    <attr name="navdrawerGradientStart" format="color"/>
+    <attr name="navdrawerGradientEnd" format="color"/>
+</resources>

@@ -18,8 +18,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+            android:background="@drawable/toolbar_background"
+            />
 
         <FrameLayout
             android:id="@+id/content_frame"
@@ -33,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@drawable/navigation_drawer_background"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu"
         />

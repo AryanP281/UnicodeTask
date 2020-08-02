@@ -1,9 +1,21 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
+   <style name="AppThemeDark" parent="Theme.MaterialComponents.NoActionBar">
+       <item name="windowNoTitle">true</item>
+       <item name="windowActionBar">false</item>
+       <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="colorPrimary">@color/darkThemeColorPrimary</item>
+       <item name="colorPrimaryDark">@color/darkThemeColorPrimary</item>
+       <item name="colorAccent">@color/darkThemeColorAccent</item>
+       <item name="android:windowBackground">@color/darkThemeWindowBackground</item>
+       <item name="android:textColorPrimary">@color/darkThemeTextColor</item>
+       <item name="android:textColor">@color/darkThemeTextColor</item>
+       <item name="toolbarGradientStart">@color/darkThemeToolbarGradientStart</item>
+       <item name="toolbarGradientEnd">@color/darkThemeToolbarGradientEnd</item>
+       <item name="toolbarGradientCentre">@color/darkThemeToolbarGradientCentre</item>
+       <item name="navdrawerGradientStart">@color/darkThemeNavGradientStart</item>
+       <item name="navdrawerGradientEnd">@color/darkThemeNavGradientEnd</item>
+   </style>
+
 
 </resources>

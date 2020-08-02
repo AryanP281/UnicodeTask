@@ -24,12 +24,11 @@ public class RetriveWeatherData extends AsyncTask<String, Void, String>
         weatherFragment = frag;
     }
 
-    protected String doInBackground(String... cityName)
+    protected String doInBackground(String... url)
     {
         try
         {
-            URL requestUrl = new URL(String.format("https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s", cityName[0],
-                    "74bbe85a0553d698bff821e7f1f5c4bd")); //The api request url
+            URL requestUrl = new URL(url[0]); //The api request url
             HttpURLConnection urlConnection = (HttpURLConnection)requestUrl.openConnection(); //Sending the request
             try
             {
