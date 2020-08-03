@@ -27,4 +27,6 @@
     <string name="location_permission_rationale_msg">App needs to use location services to obtain location for showing weather data</string>
     <string name="switch_on_location_dialog_title">Switch on location services</string>
     <string name="switch_on_location_dialog_msg">Location services are off. Switch on location services ? </string>
+    <string name="dial_contact">Dial</string>
+    <string name="share_contact">Share contact</string>
 </resources>

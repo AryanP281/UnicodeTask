@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuitem_dial"
+        android:title="@string/dial_contact"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/menuitem_share_contact"
+        android:title="@string/share_contact"
+        app:showAsAction="never"
+        />
+
+</menu>

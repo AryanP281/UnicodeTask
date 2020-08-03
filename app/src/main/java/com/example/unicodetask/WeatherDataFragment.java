@@ -96,8 +96,9 @@ public class WeatherDataFragment extends Fragment
         //Displaying the date and time
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        ((TextView)fragmentView.findViewById(R.id.datetime_label)).setText(String.format("%d %s, %d:%d %s", calendar.get(Calendar.DAY_OF_MONTH),
-                MONTHS[calendar.get(Calendar.MONTH)], hour > 12 ? hour - 12 : hour, calendar.get(Calendar.MINUTE), (hour < 12) ? "AM" : "PM")); //Setting the date and time
+        int minute = calendar.get(Calendar.MINUTE);
+        ((TextView)fragmentView.findViewById(R.id.datetime_label)).setText(String.format("%d %s, %d:%s%d %s", calendar.get(Calendar.DAY_OF_MONTH),
+                MONTHS[calendar.get(Calendar.MONTH)], hour > 12 ? hour - 12 : hour, minute < 10 ? '0' : "", minute, (hour < 12) ? "AM" : "PM")); //Setting the date and time
 
         //Displaying the weather data
         displayWeatherData(fragmentView);
@@ -120,6 +121,10 @@ public class WeatherDataFragment extends Fragment
         try
         {
             JSONObject mainObj = weatherData.getJSONObject("main"); //The json object containing the temperature data
+
+            //Displaying the city name
+            String cityName = weatherData.getString("name");
+            ((TextView)fragmentView.findViewById(R.id.city_label)).setText(cityName); //Displaying the city name
 
             //Displaying the current temperature
             int currentTemperature = mainObj.getInt("temp") - 273; //Getting the current temperature

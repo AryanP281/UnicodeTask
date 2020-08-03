@@ -30,6 +30,7 @@ public class ContactListFragment extends Fragment
     private int CONTACTS_PERMISSION_REQUEST_CODE = 0;
     static String BUNDLE_CONTACT_ID = "_ID";
     static String BUNDLE_CONTACT_NAME = "DISPLAY_NAME";
+    static String BUNDLE_CONTACT_NUMBER = "NUM";
 
     private Context fragmentActivity; //The activity with which the fragment is associated
     private View fragmentView; //The view associated with the fragment

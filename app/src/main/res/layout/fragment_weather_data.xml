@@ -19,10 +19,20 @@
             />
 
         <TextView
-            android:id="@+id/temp_label"
+            android:id="@+id/city_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/datetime_label"
+            android:layout_marginTop="8dp"
+            android:text="Mumbai"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/temp_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/city_label"
             android:layout_marginTop="8dp"
             android:text="29"
             android:textSize="80sp"
@@ -33,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/temp_label"
-            android:layout_below="@id/datetime_label"
+            android:layout_alignTop="@+id/temp_label"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="24dp"
             android:text="@string/degree_celsius_symbol"
