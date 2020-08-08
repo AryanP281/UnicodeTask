@@ -120,13 +120,6 @@ public class WeatherFragment extends Fragment
         return true;
     }
 
-    @Override
-    public void onDestroy()
-    {
-        super.onDestroy();
-        int t = 0;
-    }
-
     private void getInternetPermission()
     {
         /*Asks the user for permission to access the internet*/

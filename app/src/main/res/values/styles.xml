@@ -9,7 +9,9 @@
        <item name="colorAccent">@color/darkThemeColorAccent</item>
        <item name="android:windowBackground">@color/darkThemeWindowBackground</item>
        <item name="android:textColorPrimary">@color/darkThemeTextColor</item>
+       <item name="android:textColorSecondary">@color/darkThemeTextColor</item>
        <item name="android:textColor">@color/darkThemeTextColor</item>
+       <item name="materialButtonStyle">@style/AppThemeDark.Button</item>
        <item name="toolbarGradientStart">@color/darkThemeToolbarGradientStart</item>
        <item name="toolbarGradientEnd">@color/darkThemeToolbarGradientEnd</item>
        <item name="toolbarGradientCentre">@color/darkThemeToolbarGradientCentre</item>
@@ -17,5 +19,8 @@
        <item name="navdrawerGradientEnd">@color/darkThemeNavGradientEnd</item>
    </style>
 
+    <style name="AppThemeDark.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/darkThemeTextColor</item>
+    </style>
 
 </resources>

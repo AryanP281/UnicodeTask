@@ -29,4 +29,8 @@
     <string name="switch_on_location_dialog_msg">Location services are off. Switch on location services ? </string>
     <string name="dial_contact">Dial</string>
     <string name="share_contact">Share contact</string>
+    <string name="set_profilepic_button">Set Profile Picture</string>
+    <string name="profilepic_source_dialog_msg">Select image source</string>
+    <string name="gallery_permission_rationale_msg">App requires to access your gallery in order to set profile picture</string>
+    <string name="camera_permission_rationale_msg">App requires to access your camera in order to set profile picture</string>
 </resources>

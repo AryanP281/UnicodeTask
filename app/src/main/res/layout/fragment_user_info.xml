@@ -70,5 +70,14 @@
         android:inputType="phone"
         />
 
+    <Button
+        android:id="@+id/user_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phonenum"
+        android:layout_marginTop="25dp"
+        android:text="@string/set_profilepic_button"
+        />
+
     </RelativeLayout>
 </ScrollView>

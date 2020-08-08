@@ -9,8 +9,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
+import android.content.ContentResolver;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -20,8 +30,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
 
 public class HomeActivity extends AppCompatActivity {
+
+    static final int EXTERNAL_STORAGE_PERMISSION_CODE = 101;
 
     private DrawerLayout drawerLayout; //The drawer layout for the navigation drawer
     private Toolbar toolbar; //The app toolbar
@@ -31,6 +44,8 @@ public class HomeActivity extends AppCompatActivity {
     static final String USER_INFO_FILE_NAME = "user.txt"; //The name of the txt file in which the user info is stored
 
     boolean userInfoFound = false; //Tells whether the user info was found and read from the file
+    private boolean externalStoragePermissionGranted = false; //Tells whether the app was granted permission to access external storage
+    private Uri profilePicUri = null; //The content uri of the users saved profile pic
 
     private NavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -65,6 +80,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //Getting the required permissions
+        managePermissions();
+
         //Setting the toolbar as the action bar
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -95,6 +113,33 @@ public class HomeActivity extends AppCompatActivity {
 
         //Saving the toolbar title
         outState.putString("toolbar_title", toolbar.getTitle().toString());
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int grantResults[])
+    {
+        if(requestCode == EXTERNAL_STORAGE_PERMISSION_CODE)
+        {
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                externalStoragePermissionGranted = true;
+                displayUserProfilePic(profilePicUri);
+            }
+        }
+    }
+
+    private void managePermissions()
+    {
+        /*Gets the permissions required by the activity*/
+
+        externalStoragePermissionGranted = false;
+
+        //Checking if the activity has permission to access external storage
+        if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, EXTERNAL_STORAGE_PERMISSION_CODE);
+        else
+            externalStoragePermissionGranted = true;
+
     }
 
     void displayFragment(Fragment fragment, boolean addToBackstack)
@@ -137,6 +182,16 @@ public class HomeActivity extends AppCompatActivity {
             ((TextView)navView.getHeaderView(0).findViewById(R.id.nav_header_userphone)).setText(userInfo[1]);
             ((TextView)navView.getHeaderView(0).findViewById(R.id.nav_header_birthdate)).setText(userInfo[2]);
 
+            //Displaying the user profile pic
+            try {
+                profilePicUri = Uri.parse(userInfo[3]);
+                if (externalStoragePermissionGranted) displayUserProfilePic(profilePicUri);
+            }
+            catch(Exception e)
+            {
+                //Using the default profile pic
+            }
+
             //Closing the reader after use
             reader.close();
 
@@ -167,6 +222,26 @@ public class HomeActivity extends AppCompatActivity {
         values[2] = ((TextView)navView.getHeaderView(0).findViewById(R.id.nav_header_birthdate)).getText().toString();
 
         return values;
+    }
+
+    void displayUserProfilePic(Bitmap image)
+    {
+        /*Displays the given bitmap as the user's profile pic in the nav header */
+
+        ((ImageView)navView.getHeaderView(0).findViewById(R.id.nav_header_dp)).setImageBitmap(image);
+    }
+
+    void displayUserProfilePic(Uri imageUri)
+    {
+        /*Displays the image at given uri as the user's profile pic in the nav header */
+
+        //Checking if the file exists
+        Cursor cursor = getContentResolver().query(imageUri,null,null,null,null);
+        if(cursor != null && cursor.moveToFirst())
+            ((ImageView)navView.getHeaderView(0).findViewById(R.id.nav_header_dp)).setImageURI(imageUri); //Setting the given image
+        else
+            ((ImageView)navView.getHeaderView(0).findViewById(R.id.nav_header_dp)).setImageResource(R.drawable.icon_userdp); //Setting the default user dp
+
     }
 
 }
