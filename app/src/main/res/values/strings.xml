@@ -3,6 +3,7 @@
     <string name="nav_userinfo_title">User Info</string>
     <string name="nav_contacts_title">Contact List</string>
     <string name="nav_weather_title">Weather</string>
+    <string name="nav_settings_title">Settings</string>
     <string name="open_nav_drawer">Open Navigation Drawer</string>
     <string name="close_nav_drawer">Close Navigation Drawer</string>
     <string name="frag_userinfo_title">User Info</string>
@@ -22,7 +23,7 @@
     <string name="city_name_hint">Enter City - eg Mumbai</string>
     <string name="search_city_weather_btn_label">Search</string>
     <string name="internet_permission_rationale_msg">App requires internet access for getting weather data</string>
-   <string name="degree_celsius_symbol">\u2103</string>
+    <string name="degree_celsius_symbol">\u2103</string>
     <string name="get_user_location">My Location</string>
     <string name="location_permission_rationale_msg">App needs to use location services to obtain location for showing weather data</string>
     <string name="switch_on_location_dialog_title">Switch on location services</string>
@@ -33,4 +34,11 @@
     <string name="profilepic_source_dialog_msg">Select image source</string>
     <string name="gallery_permission_rationale_msg">App requires to access your gallery in order to set profile picture</string>
     <string name="camera_permission_rationale_msg">App requires to access your camera in order to set profile picture</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="set_theme_label">Theme :</string>
+    <string-array name="themes_list">
+        <item>Dark</item>
+        <item>Light</item>
+    </string-array>
+    <string name="apply_settings">Apply</string>
 </resources>

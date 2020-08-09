@@ -23,4 +23,26 @@
         <item name="android:textColor">@color/darkThemeTextColor</item>
     </style>
 
+    <style name="AppThemeLight" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="colorPrimary">@color/lightThemeColorPrimary</item>
+        <item name="colorPrimaryDark">@color/lightThemeColorPrimary</item>
+        <item name="colorAccent">@color/lightThemeColorAccent</item>
+        <item name="android:windowBackground">@color/lightThemeWindowBackground</item>
+        <item name="android:textColorPrimary">@color/lightThemeTextColor</item>
+        <item name="android:textColorSecondary">@color/lightThemeTextColor</item>
+        <item name="android:textColor">@color/lightThemeTextColor</item>
+        <item name="materialButtonStyle">@style/AppThemeLight.Button</item>
+        <item name="toolbarGradientStart">@color/lightThemeToolbarGradientStart</item>
+        <item name="toolbarGradientEnd">@color/lightThemeToolbarGradientEnd</item>
+        <item name="toolbarGradientCentre">@color/lightThemeToolbarGradientCentre</item>
+        <item name="navdrawerGradientStart">@color/lightThemeNavGradientStart</item>
+    </style>
+
+    <style name="AppThemeLight.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/lightThemeTextColor</item>
+    </style>
+
 </resources>

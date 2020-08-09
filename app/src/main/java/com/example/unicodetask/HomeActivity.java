@@ -65,6 +65,10 @@ public class HomeActivity extends AppCompatActivity {
                     displayFragment(new WeatherFragment(), false); //Displaying the weather data fragment
                     toolbar.setTitle(R.string.frag_weatherinfo_title); //Updating the title
                     break;
+                case R.id.nav_settings :
+                    displayFragment(new SettingsFragment(), false); //Displaying the settings fragment
+                    toolbar.setTitle(R.string.nav_settings_title); //Updating the title
+                    break;
             }
 
             //Closing the drawer
