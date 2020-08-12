@@ -60,14 +60,13 @@ public class SettingsFragment extends Fragment {
     {
         //Getting the theme to be applied
 
-        //Applying the theme
-        int themesList[] = {R.style.AppThemeDark, R.style.AppThemeLight}; //The list of themes
-        Spinner themesSpinner = (Spinner)getView().findViewById(R.id.themes_spinner);
-        getActivity().setTheme(themesList[themesSpinner.getSelectedItemPosition()]);
-        //Reloading the activity in order to apply the theme changes
-        getActivity().fileList();
-        startActivity(getActivity().getIntent());
+        //Setting the theme
+        ThemeManager.THEMES themes[] = {ThemeManager.THEMES.Dark, ThemeManager.THEMES.Light};
+        ThemeManager.setTheme(themes[((Spinner)getView().findViewById(R.id.themes_spinner)).getSelectedItemPosition()]);
 
+        //Restarting the activity to apply the theme
+        getActivity().finish();
+        getActivity().startActivity(getActivity().getIntent());
     }
 
 }

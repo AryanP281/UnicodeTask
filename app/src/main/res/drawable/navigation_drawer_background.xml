@@ -5,7 +5,7 @@
     <gradient
         android:startColor="?attr/navdrawerGradientStart"
         android:endColor="?attr/navdrawerGradientEnd"
-        android:angle="90"
+        android:angle="?attr/navdrawerGradientAngle"
         />
 
 </shape>

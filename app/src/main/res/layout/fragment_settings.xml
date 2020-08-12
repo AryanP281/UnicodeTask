@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/theme_label"
         android:layout_marginLeft="16dp"
+        android:popupBackground="?android:attr/windowBackground"
         />
 
 </RelativeLayout>

@@ -5,4 +5,5 @@
     <attr name="toolbarGradientEnd" format="color"/>
     <attr name="navdrawerGradientStart" format="color"/>
     <attr name="navdrawerGradientEnd" format="color"/>
+    <attr name="navdrawerGradientAngle" format="integer"/>
 </resources>

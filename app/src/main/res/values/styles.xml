@@ -5,7 +5,7 @@
        <item name="windowActionBar">false</item>
        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="colorPrimary">@color/darkThemeColorPrimary</item>
-       <item name="colorPrimaryDark">@color/darkThemeColorPrimary</item>
+       <item name="colorPrimaryDark">@color/darkThemeColorPrimaryDark</item>
        <item name="colorAccent">@color/darkThemeColorAccent</item>
        <item name="android:windowBackground">@color/darkThemeWindowBackground</item>
        <item name="android:textColorPrimary">@color/darkThemeTextColor</item>
@@ -14,9 +14,9 @@
        <item name="materialButtonStyle">@style/AppThemeDark.Button</item>
        <item name="toolbarGradientStart">@color/darkThemeToolbarGradientStart</item>
        <item name="toolbarGradientEnd">@color/darkThemeToolbarGradientEnd</item>
-       <item name="toolbarGradientCentre">@color/darkThemeToolbarGradientCentre</item>
        <item name="navdrawerGradientStart">@color/darkThemeNavGradientStart</item>
        <item name="navdrawerGradientEnd">@color/darkThemeNavGradientEnd</item>
+       <item name="navdrawerGradientAngle">90</item>
    </style>
 
     <style name="AppThemeDark.Button" parent="Widget.MaterialComponents.Button">
@@ -28,17 +28,19 @@
         <item name="windowActionBar">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="colorPrimary">@color/lightThemeColorPrimary</item>
-        <item name="colorPrimaryDark">@color/lightThemeColorPrimary</item>
+        <item name="colorPrimaryDark">@color/lightThemeColorPrimaryDark</item>
         <item name="colorAccent">@color/lightThemeColorAccent</item>
         <item name="android:windowBackground">@color/lightThemeWindowBackground</item>
         <item name="android:textColorPrimary">@color/lightThemeTextColor</item>
         <item name="android:textColorSecondary">@color/lightThemeTextColor</item>
         <item name="android:textColor">@color/lightThemeTextColor</item>
+        <item name="android:textColorHint">@color/darkThemeColorPrimary</item>
         <item name="materialButtonStyle">@style/AppThemeLight.Button</item>
         <item name="toolbarGradientStart">@color/lightThemeToolbarGradientStart</item>
         <item name="toolbarGradientEnd">@color/lightThemeToolbarGradientEnd</item>
-        <item name="toolbarGradientCentre">@color/lightThemeToolbarGradientCentre</item>
         <item name="navdrawerGradientStart">@color/lightThemeNavGradientStart</item>
+        <item name="navdrawerGradientEnd">@color/lightThemeNavGradientEnd</item>
+        <item name="navdrawerGradientAngle">90</item>
     </style>
 
     <style name="AppThemeLight.Button" parent="Widget.MaterialComponents.Button">

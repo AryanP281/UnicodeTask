@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -81,6 +82,9 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        //Setting the activity theme
+        ThemeManager.setActivityTheme(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 

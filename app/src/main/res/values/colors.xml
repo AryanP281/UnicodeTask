@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="darkThemeColorPrimary">#4e4e4e</color>
+    <color name="lightThemeColorPrimary">#bf80ff</color>
     <color name="darkThemeColorPrimaryDark">#121212</color>
+    <color name="lightThemeColorPrimaryDark">#6600ff</color>
     <color name="darkThemeColorAccent">#cccccc</color>
+    <color name="lightThemeColorAccent">#ffffcc</color>
     <color name="darkThemeTextColor">#ffffff</color>
+    <color name="lightThemeTextColor">#000000</color>
     <color name="darkThemeWindowBackground">#000000</color>
+    <color name="lightThemeWindowBackground">#ffffe6</color>
     <color name="darkThemeToolbarGradientStart">#000428</color>
-    <color name="darkThemeToolbarGradientCentre">#203a43</color>
+    <color name="lightThemeToolbarGradientStart">#ee0979</color>
     <color name="darkThemeToolbarGradientEnd">#004e92</color>
+    <color name="lightThemeToolbarGradientEnd">#ff6a00</color>
     <color name="darkThemeNavGradientStart">#1f1c2c</color>
+    <color name="lightThemeNavGradientStart">#dce35b</color>
     <color name="darkThemeNavGradientEnd">#928dab</color>
+    <color name="lightThemeNavGradientEnd">#45b649</color>
 </resources>
