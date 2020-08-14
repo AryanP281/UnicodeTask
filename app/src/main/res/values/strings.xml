@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Unicode Tasks</string>
+    <string name="app_name">Unicode Tasks - By Aryan Pathare</string>
     <string name="nav_userinfo_title">User Info</string>
     <string name="nav_contacts_title">Contact List</string>
     <string name="nav_weather_title">Weather</string>
@@ -36,4 +36,5 @@
     <string name="camera_permission_rationale_msg">App requires to access your camera in order to set profile picture</string>
     <string name="switch_theme_label">Light Theme</string>
     <string name="preference_theme_key">preference_theme</string>
+    <string name="credits">Created by Aryan Pathare</string>
 </resources>
