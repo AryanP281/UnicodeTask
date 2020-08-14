@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -30,6 +31,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -46,9 +49,16 @@ public class UserInfoFragment extends Fragment
     private final int USE_GALLERY_REQUEST_CODE = 1;
     private final int USE_CAMERA_REQUEST_CODE = 11;
 
+    private final String BUNDLE_NAME_KEY = "NAME";
+    private final String BUNDLE_DAY_KEY = "DAY";
+    private final String BUNDLE_MONTH_KEY = "MONTH";
+    private final String BUNDLE_YEAR_KEY = "YEAR";
+    private final String BUNDLE_PHONE_KEY = "PHONE";
+
     private Context fragmentActivity; //The activity with which the fragment is associated
     private View fragmentView; //The View object associate with the fragment layout
     private Uri profilePicUri = null; //The content uri of the users saved profile pic
+    private Bundle savedState = null;
 
     private View.OnClickListener setProfilePicListener = new View.OnClickListener() {
         @Override
@@ -77,6 +87,8 @@ public class UserInfoFragment extends Fragment
     {
         super.onCreate(savedInstanceState);
 
+        savedState = savedInstanceState;
+
         //Getting the fragment activity
         fragmentActivity = getActivity();
     }
@@ -92,18 +104,12 @@ public class UserInfoFragment extends Fragment
         setHasOptionsMenu(true);
 
         //Setting the set profile pic button listener
-        ((Button)fragmentView.findViewById(R.id.user_pic)).setOnClickListener(setProfilePicListener);
-
-        return fragmentView;
-    }
-
-    @Override
-    public void onResume()
-    {
-        super.onResume();
+        ((Button)fragmentView.findViewById(R.id.select_user_pic)).setOnClickListener(setProfilePicListener);
 
         //Restoring entered user info
         restoreUserInfo();
+
+        return fragmentView;
     }
 
     @Override
@@ -167,26 +173,55 @@ public class UserInfoFragment extends Fragment
             {
                 //Checking if the image was received
                 if(resultCode == AppCompatActivity.RESULT_OK)
-                    ((HomeActivity)getActivity()).displayUserProfilePic(profilePicUri);
+                    ((HomeActivity) getActivity()).displayUserProfilePic(profilePicUri);
             }
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState)
+    {
+        //Saving the entered name
+        outState.putString(BUNDLE_NAME_KEY, ((EditText)getView().findViewById(R.id.user_name)).getText().toString());
+
+        //Saving the entered birth date
+        DatePicker datePicker = (DatePicker)getView().findViewById(R.id.birth_date);
+        outState.putInt(BUNDLE_DAY_KEY, datePicker.getDayOfMonth());
+        outState.putInt(BUNDLE_MONTH_KEY, datePicker.getMonth());
+        outState.putInt(BUNDLE_YEAR_KEY, datePicker.getYear());
+
+        //Saving the entered phoneNumber
+        outState.putString(BUNDLE_PHONE_KEY, ((EditText)getView().findViewById(R.id.phonenum)).getText().toString());
     }
 
     private void restoreUserInfo()
     {
         /*Restores the user info from the nav header*/
 
-        if(((HomeActivity)fragmentActivity).userInfoFound)
+        if(savedState == null) {
+            if (((HomeActivity) fragmentActivity).userInfoFound) {
+                //Getting the values stored in the nav header
+                String userInfo[] = ((HomeActivity) fragmentActivity).getNavHeaderFieldValues();
+
+                ((EditText) fragmentView.findViewById(R.id.user_name)).setText(userInfo[0]); //Setting the user name field
+                ((EditText) fragmentView.findViewById(R.id.phonenum)).setText(userInfo[1]); //Setting the user phone field
+
+                //Getting the date components
+                String date[] = userInfo[2].split("-");
+                ((DatePicker) fragmentView.findViewById(R.id.birth_date)).updateDate(Integer.parseInt(date[2]), Integer.parseInt(date[1]) - 1, Integer.parseInt(date[0]));
+            }
+        }
+        else
         {
-            //Getting the values stored in the nav header
-            String userInfo[] = ((HomeActivity)fragmentActivity).getNavHeaderFieldValues();
+            //Setting the name
+            ((EditText)fragmentView.findViewById(R.id.user_name)).setText(savedState.getString(BUNDLE_NAME_KEY));
 
-            ((EditText)fragmentView.findViewById(R.id.user_name)).setText(userInfo[0]); //Setting the user name field
-            ((EditText)fragmentView.findViewById(R.id.phonenum)).setText(userInfo[1]); //Setting the user phone field
+            //Setting the date
+            DatePicker datePicker = (DatePicker)fragmentView.findViewById(R.id.birth_date);
+            datePicker.updateDate(savedState.getInt(BUNDLE_YEAR_KEY), savedState.getInt(BUNDLE_MONTH_KEY), savedState.getInt(BUNDLE_DAY_KEY));
 
-            //Getting the date components
-            String date[] = userInfo[2].split("-");
-            ((DatePicker)fragmentView.findViewById(R.id.birth_date)).updateDate(Integer.parseInt(date[2]), Integer.parseInt(date[1]) - 1, Integer.parseInt(date[0]));
+            //Setting the phone number
+            ((EditText)fragmentView.findViewById(R.id.phonenum)).setText(savedState.getString(BUNDLE_PHONE_KEY));
         }
     }
 
@@ -200,6 +235,9 @@ public class UserInfoFragment extends Fragment
         //Updating the birth date picker
         Calendar calendar = Calendar.getInstance();
         ((DatePicker)fragmentView.findViewById(R.id.birth_date)).updateDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_WEEK)); //Resetting to current date
+
+        //Changing the user dp in the header
+        ((HomeActivity)getActivity()).setDefaultDisplayPic();
 
         //Deleting the user info file
         File userInfoFile = new File(fragmentActivity.getFilesDir(), HomeActivity.USER_INFO_FILE_NAME);
@@ -223,45 +261,44 @@ public class UserInfoFragment extends Fragment
     {
         /*Saves the entered user info to the file*/
 
-        //Reading the user info
-        StringBuilder userInfo = new StringBuilder();
-        userInfo.append(((EditText)fragmentView.findViewById(R.id.user_name)).getText().toString() + ",");
-        userInfo.append(((EditText)fragmentView.findViewById(R.id.phonenum)).getText().toString() + ",");
-
-        //Getting the entered birthdate
-        DatePicker birthdatePicker = ((DatePicker)fragmentView.findViewById(R.id.birth_date));
-        int birthday = birthdatePicker.getDayOfMonth();
-        int birthmonth = birthdatePicker.getMonth() + 1;
-        int birthYear = birthdatePicker.getYear();
-        userInfo.append(String.format("%d-%d-%d,", birthday, birthmonth, birthYear));
-
-        //Saving the profile pic uri
-        userInfo.append(profilePicUri != null ? profilePicUri.toString() : "");
-
-        try
+        View views[] = inputsValid(); //Null if any of the fields is empty
+        if(views != null)
         {
-            FileOutputStream writer = new FileOutputStream(new File(fragmentActivity.getFilesDir(), HomeActivity.USER_INFO_FILE_NAME)); //Opening a writer to write the user info
+            //Reading the user info
+            StringBuilder userInfo = new StringBuilder();
+            userInfo.append(((EditText)views[0]).getText().toString() + ",");
+            userInfo.append(((EditText) views[1]).getText().toString() + ",");
 
-            //Writing the user info to file
-            writer.write(userInfo.toString().getBytes());
+            //Getting the entered birthdate
+            DatePicker birthdatePicker = ((DatePicker) views[2]);
+            int birthday = birthdatePicker.getDayOfMonth();
+            int birthmonth = birthdatePicker.getMonth() + 1;
+            int birthYear = birthdatePicker.getYear();
+            userInfo.append(String.format("%d-%d-%d,", birthday, birthmonth, birthYear));
 
-            //Closing the writer after use
-            writer.close();
-        }
-        catch(FileNotFoundException e)
-        {
-            Toast.makeText(fragmentActivity, "Unable to save user info", Toast.LENGTH_SHORT).show();
-        }
-        catch(SecurityException e)
-        {
-            Toast.makeText(fragmentActivity, "Unable to access file", Toast.LENGTH_SHORT).show();
-        }
-        catch(IOException e)
-        {
-        }
+            //Saving the profile pic uri
+            userInfo.append(profilePicUri != null ? profilePicUri.toString() : "");
 
-        //Updating the navigation drawer header
-        ((HomeActivity)fragmentActivity).updateNavHeader(userInfo.toString().split(","));
+            try {
+                FileOutputStream writer = new FileOutputStream(new File(fragmentActivity.getFilesDir(), HomeActivity.USER_INFO_FILE_NAME)); //Opening a writer to write the user info
+
+                //Writing the user info to file
+                writer.write(userInfo.toString().getBytes());
+
+                //Closing the writer after use
+                writer.close();
+            } catch (FileNotFoundException e) {
+                Toast.makeText(fragmentActivity, "Unable to save user info", Toast.LENGTH_SHORT).show();
+            } catch (SecurityException e) {
+                Toast.makeText(fragmentActivity, "Unable to access file", Toast.LENGTH_SHORT).show();
+            } catch (IOException e) {
+            }
+
+            //Updating the navigation drawer header
+            ((HomeActivity) fragmentActivity).updateNavHeader(userInfo.toString().split(","));
+        }
+        else
+            Toast.makeText(fragmentActivity, "Fields cannot be empty", Toast.LENGTH_SHORT).show();
     }
 
     private void useGallery()
@@ -369,6 +406,27 @@ public class UserInfoFragment extends Fragment
         catch(IOException e){}
 
         return imageFile;
+    }
+
+    private View[] inputsValid()
+    {
+        /*Checks if all the fields are filled and returns references to the views. Returns null if any of the fields is empty*/
+
+        View views[] = new View[3];
+
+        //Checking if the name field has been filled
+        views[0] = fragmentView.findViewById(R.id.user_name);
+        if(((EditText)views[0]).getText().toString().trim().length() == 0) return null;
+
+        //Checking if the phone number is empty
+        views[1] = fragmentView.findViewById(R.id.phonenum);
+        if(((EditText)views[1]).getText().toString().trim().length() == 0) return null;
+
+        //Adding the datepicker
+        views[2] = fragmentView.findViewById(R.id.birth_date);
+
+        return views;
+
     }
 
 }

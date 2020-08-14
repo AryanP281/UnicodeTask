@@ -8,9 +8,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.PreferenceManager;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -83,7 +85,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         //Setting the activity theme
-        ThemeManager.setActivityTheme(this);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this); //Getting the default shared preferences for the activity
+        if(preferences.getBoolean(getResources().getString(R.string.preference_theme_key), false))
+            setTheme(R.style.AppThemeLight); //Setting the light theme
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -248,8 +252,15 @@ public class HomeActivity extends AppCompatActivity {
         if(cursor != null && cursor.moveToFirst())
             ((ImageView)navView.getHeaderView(0).findViewById(R.id.nav_header_dp)).setImageURI(imageUri); //Setting the given image
         else
-            ((ImageView)navView.getHeaderView(0).findViewById(R.id.nav_header_dp)).setImageResource(R.drawable.icon_userdp); //Setting the default user dp
+            setDefaultDisplayPic();
 
+    }
+
+    void setDefaultDisplayPic()
+    {
+        /*Displays the default image as the user's profile pic*/
+
+        ((ImageView)navView.getHeaderView(0).findViewById(R.id.nav_header_dp)).setImageResource(R.drawable.icon_userdp); //Setting the default user dp
     }
 
 }

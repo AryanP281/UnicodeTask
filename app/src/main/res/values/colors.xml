@@ -4,8 +4,8 @@
     <color name="lightThemeColorPrimary">#bf80ff</color>
     <color name="darkThemeColorPrimaryDark">#121212</color>
     <color name="lightThemeColorPrimaryDark">#6600ff</color>
-    <color name="darkThemeColorAccent">#cccccc</color>
-    <color name="lightThemeColorAccent">#ffffcc</color>
+    <color name="darkThemeColorAccent">#00b8e6</color>
+    <color name="lightThemeColorAccent">#ffa64d</color>
     <color name="darkThemeTextColor">#ffffff</color>
     <color name="lightThemeTextColor">#000000</color>
     <color name="darkThemeWindowBackground">#000000</color>

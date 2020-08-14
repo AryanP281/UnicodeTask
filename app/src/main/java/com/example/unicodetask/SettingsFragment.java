@@ -1,72 +1,25 @@
 package com.example.unicodetask;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceFragmentCompat;
 
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends PreferenceFragmentCompat
+{
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View fragmentView = inflater.inflate(R.layout.fragment_settings, container, false);
-
-        //Populating the themes spinner
-        Spinner spinner = (Spinner)fragmentView.findViewById(R.id.themes_spinner); //The themes spinner
-        ArrayAdapter<CharSequence> themesAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.themes_list, R.layout.theme_spinner); //Adapter containing the themes list
-        themesAdapter.setDropDownViewResource(R.layout.theme_spinner);
-        spinner.setAdapter(themesAdapter); //Setting the spinner adapter
-
-        //Enabling toolbar options menu
-        setHasOptionsMenu(true);
-
-        return fragmentView;
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        setPreferencesFromResource(R.xml.root_preferences, rootKey);
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+    public void onStop()
     {
-        /*Inflates the toolbar menu*/
+        super.onStop();
 
-        inflater.inflate(R.menu.settings_menu, menu); //Inflating the fragment menu
-        super.onCreateOptionsMenu(menu,inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        /*Handles menu item clicks*/
-
-        //Determining which item has been clicked
-        switch(item.getItemId())
-        {
-            case R.id.menuitem_apply_settings : applySettings(); break;
-        }
-
-        return true;
-    }
-
-    private void applySettings()
-    {
-        //Getting the theme to be applied
-
-        //Setting the theme
-        ThemeManager.THEMES themes[] = {ThemeManager.THEMES.Dark, ThemeManager.THEMES.Light};
-        ThemeManager.setTheme(themes[((Spinner)getView().findViewById(R.id.themes_spinner)).getSelectedItemPosition()]);
-
-        //Restarting the activity to apply the theme
+        //Restarting the activity to apply the theme changes
         getActivity().finish();
-        getActivity().startActivity(getActivity().getIntent());
+        startActivity(getActivity().getIntent());
     }
-
 }

@@ -34,11 +34,6 @@
     <string name="profilepic_source_dialog_msg">Select image source</string>
     <string name="gallery_permission_rationale_msg">App requires to access your gallery in order to set profile picture</string>
     <string name="camera_permission_rationale_msg">App requires to access your camera in order to set profile picture</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="set_theme_label">Theme :</string>
-    <string-array name="themes_list">
-        <item>Dark</item>
-        <item>Light</item>
-    </string-array>
-    <string name="apply_settings">Apply</string>
+    <string name="switch_theme_label">Light Theme</string>
+    <string name="preference_theme_key">preference_theme</string>
 </resources>
