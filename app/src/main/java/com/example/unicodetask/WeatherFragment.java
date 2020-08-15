@@ -48,7 +48,7 @@ public class WeatherFragment extends Fragment
                 String city = ((TextView) getView().findViewById(R.id.city_name)).getText().toString();
 
                 String requestUrl = String.format("https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s", city,
-                        "74bbe85a0553d698bff821e7f1f5c4bd"); //The api request url
+                        "API-TOKEN"); //The api request url
 
                 //Getting the weather for the city
                 (new RetriveWeatherData(WeatherFragment.this)).execute(requestUrl);
