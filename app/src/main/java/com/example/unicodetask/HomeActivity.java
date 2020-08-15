@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -138,6 +139,8 @@ public class HomeActivity extends AppCompatActivity {
                 displayUserProfilePic(profilePicUri);
             }
         }
+
+        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
     }
 
     private void managePermissions()
@@ -148,7 +151,7 @@ public class HomeActivity extends AppCompatActivity {
 
         //Checking if the activity has permission to access external storage
         if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, EXTERNAL_STORAGE_PERMISSION_CODE);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, EXTERNAL_STORAGE_PERMISSION_CODE);
         else
             externalStoragePermissionGranted = true;
 
@@ -246,6 +249,13 @@ public class HomeActivity extends AppCompatActivity {
     void displayUserProfilePic(Uri imageUri)
     {
         /*Displays the image at given uri as the user's profile pic in the nav header */
+
+        //Checking if a vlid uri has been provided
+        if(imageUri == null)
+        {
+            setDefaultDisplayPic();
+            return;
+        }
 
         //Checking if the file exists
         Cursor cursor = getContentResolver().query(imageUri,null,null,null,null);

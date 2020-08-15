@@ -1,17 +1,13 @@
 package com.example.unicodetask;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -23,7 +19,6 @@ import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ContactListFragment extends Fragment
 {
@@ -86,13 +81,15 @@ public class ContactListFragment extends Fragment
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int grantResults[])
     {
+        //super.onRequestPermissionsResult(requestCode,permissions,grantResults);
+
         //Checking if permission was granted
         if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
         {
+            contactPermissionGranted = true;
+
             //Displaying the contact list
             getAndDisplayContactList();
-
-            contactPermissionGranted = true;
         }
         else contactPermissionGranted = false;
     }
